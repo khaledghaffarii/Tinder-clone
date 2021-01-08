@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import TinderCards from 'react-tinder-card'
 import './TinderCard.css'
 const TinderCard = () => {
     const[people,setPerson] = useState([
@@ -26,15 +27,21 @@ const TinderCard = () => {
              <div className="tinderCards__cardContainer">
                 {
                     people.map((person) =>(
-                        <TinderCard 
-                        className="swip" 
+                        <TinderCards 
+                        className="swipe" 
                         key={person.name}
                         preventSwipe={['up', 'down']}
                         onSwipe={(dir)=> swiped(dir,person.name) }
                         onCardLeftScreen={() => outOfFrame(person.name)} 
                         >
-                             Hello, World!
-                        </TinderCard>
+                            
+                             <div
+                             style={{ backgroundImage : `url(${person.url})` }}
+                             className="card"
+                             >
+                             <h3> {person.name} </h3>
+                             </div>
+                        </TinderCards>
                     ))
                 }
              </div>
